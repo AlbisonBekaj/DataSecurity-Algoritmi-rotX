@@ -4,11 +4,13 @@
 
 using namespace std;
 class RotX{
+    public:
 
 
 
 };
 class Run{
+    public:
 
 
 };
