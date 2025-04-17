@@ -1,10 +1,10 @@
 #include<iostream>
 #include <cstdint>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 class RotX{
-    public:
 
 
 
@@ -16,7 +16,6 @@ class Run{
 };
 
 int main(){
-
 
 
 
