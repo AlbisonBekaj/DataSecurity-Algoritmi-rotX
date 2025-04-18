@@ -11,7 +11,7 @@ class RotX{
             data[i] = (data[i] + key) % 256;
         }
     }
-
+//test
 
 };
 class Run{
