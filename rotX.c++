@@ -6,14 +6,13 @@
 using namespace std;
 class RotX{
     public:
-        static vector<uint8_t> encrypt(const string& input, uint8_t key) {
-        vector<uint8_t> output;
-            for (char ch : input)
-            output.push_back((uint8_t(ch) + key) % 256);
-        return output;
+        static void encrypt(uint8_t* data, size_t length, uint8_t key) {
+        for (size_t i = 0; i < length; i++) {
+            data[i] = (data[i] + key) % 256;
+        }
     }
 
-// hellloo
+
 };
 class Run{
 
