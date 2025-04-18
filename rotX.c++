@@ -11,6 +11,12 @@ class RotX{
             data[i] = (data[i] + key) % 256;
         }
     }
+     static void print_bytes(const uint8_t* data, size_t length) {
+        for (size_t i = 0; i < length; i++) {
+            std::cout << static_cast<int>(data[i]) << " ";
+        }
+        std::cout << std::endl;
+    }
 
 
 };
