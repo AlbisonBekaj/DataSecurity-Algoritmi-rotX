@@ -41,7 +41,7 @@ class RotX{
             data[i] = static_cast<uint8_t>(text[i]);
         }
         for (size_t i = 0; i < text.length(); i++) {
-            data[i] = (data[i] - key) % 256;
+            data[i] = (data[i] - key + 256) % 256;
         }
         for (size_t i = 0; i < text.length(); i++) {
             text[i] = static_cast<char>(data[i]);
