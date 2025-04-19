@@ -34,7 +34,7 @@ class RotX{
             }
         }
 
-        static void Decrypt(string & text, int key) {
+        static void decrypt(string & text, int key) {
             uint8_t* data = new uint8_t[text.length()];
             for (int i = 0; i < text.length(); i++) {
                 data[i] = static_cast<uint8_t>(text[i]);
@@ -44,9 +44,9 @@ class RotX{
             delete[] data;
         }
 
-        static void DecryptAll(vector<string>& list, vector<int>& keys, int count) {
-            for (int i = 0; i < count; ++i) {
-                Decrypt(list[i], keys[i]); 
+        static void decryptAll(vector<string>& list, vector<int>& keys) {
+            for (int i = 0; i < list.size(); ++i) {
+                decrypt(list[i], keys[i]); 
                 cout << "Decrypted " << i + 1 << ": ";
                 print_bytes(list[i]); 
             }
