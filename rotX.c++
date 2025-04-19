@@ -33,6 +33,9 @@ public:
 static uint8_t generateKey(){
     return static_cast<uint8_t>(rand()%255+1);
 }
+static vector<uint8_t>generateKeys(size_t count){
+    
+}
 };
 
 class Run{
