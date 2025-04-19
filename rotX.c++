@@ -8,22 +8,31 @@
 using namespace std;
 class RotX{
     public:
-        static void encrypt(uint8_t* data, size_t length, uint8_t key) {
-        for (size_t i = 0; i < length; i++) {
+        static void encrypt(string& text, int key) {
+            uint8_t* data = new uint8_t[text.length()];
+            for (int i = 0; i < text.length(); i++) {
+                data[i] = static_cast<uint8_t>(text[i]);
+            }
+        for (int i = 0; i < text.length(); i++) {
             data[i] = (data[i] + key) % 256;
         }
+        for (int i = 0; i < text.length(); i++) {
+        text[i] = static_cast<char>(data[i]);
     }
-     static void print_bytes(const uint8_t* data, size_t length) {
-        for (size_t i = 0; i < length; i++) {
+    delete[] data;
+    }
+    static void print_bytes(string& data) {
+        int length = data.length();
+        for (int i = 0; i < length; i++) {
             cout << static_cast<int>(data[i]) << " ";
         }
         cout << endl;
     }
-    static void encryptAll(uint8_t** dataList, const size_t* lengths, const uint8_t* keys, size_t count) {
-    for (size_t i = 0; i < count; ++i) {
-        encrypt(dataList[i], lengths[i], keys[i]);  
+    static void encryptAll(vector<string>& list, vector<int>& keys, int count) {
+    for (int i = 0; i < count; ++i) {
+        encrypt(list[i], keys[i]);  
         std::cout << "Encrypted " << i + 1 << ": ";
-        print_bytes(dataList[i], lengths[i]);
+        print_bytes(list[i]);       
     }
 }
 
@@ -81,7 +90,7 @@ class Run{
     public:
         void static run(){
             system("cls");  
-            int mode;
+            int mode = 0;
             while(true){
             cout<<"\n-------------------------------------------  HOME  ------------------------------------------------------\n";
             cout<<"--------------------- 1 encrypt/decrypt ---------------- 2 encrypt/decrypt multiple ---------------------\n Mode ? : ";
@@ -103,28 +112,24 @@ class Run{
         }
     private:
         void static encryptAction(){
-            string text;
+            string data;
             int key;
             cout<< "\n(0 - RANDOM KEY ) Enter KEY to Encrypt :  ";
             cin>>key;
             cout<< "\nEnter TEXT to Encrypt :  ";
             cin.ignore(); 
-            getline(cin, text);
+            getline(cin, data);
             
-            uint8_t* data = new uint8_t[text.length()];
-            for (size_t i = 0; i < text.length(); i++) {
-                data[i] = static_cast<uint8_t>(text[i]);
-            }
             if(key==0){
                 key=Key::generateKey();
             }
             else{
                 key=static_cast<uint8_t>(key);
             }
-            RotX::print_bytes(data,text.length());
-            RotX::encrypt(data,text.length(),key);
+            RotX::print_bytes(data);
+            RotX::encrypt(data,key);
             cout<<"\nKEY : "<<key<<endl;
-            RotX::print_bytes(data,text.length());
+            RotX::print_bytes(data);
 
         }
         void static decryptAction(){
