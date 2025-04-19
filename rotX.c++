@@ -105,10 +105,10 @@ class Run{
             else{
                 key=static_cast<uint8_t>(key);
             }
-            Key::print(data,text.length());
+            RotX::print_bytes(data,text.length());
             RotX::encrypt(data,text.length(),key);
             cout<<"\nKEY : "<<key<<endl;
-            Key::print(data,text.length());
+            RotX::print_bytes(data,text.length());
 
         }
         void static decryptAction(){
@@ -130,7 +130,7 @@ class Run{
                 key=static_cast<uint8_t>(key);
             }
            // RotX::encrypt(data,text.length(),key);
-           // Key::print(data,text.length());
+           // RotX::print_bytes(data,text.length());
 
         }
         void static EnDnOne(){
