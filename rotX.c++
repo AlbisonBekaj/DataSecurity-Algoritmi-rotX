@@ -42,6 +42,12 @@ static vector<uint8_t>generateKeys(size_t count){
 
 }
 static void print(const uint8_t*data, size_t length, const string& label="Data" ){
+    cout<<label<<":";
+    for( size_t i=0; i<length;++i){
+        cout<<static_cast<int>(data[i])<<"";
+
+    }
+    cout<<endl;
     
 }
 
