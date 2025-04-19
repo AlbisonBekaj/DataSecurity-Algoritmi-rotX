@@ -48,6 +48,9 @@ static void print(const uint8_t*data, size_t length, const string& label="Data" 
 
     }
     cout<<endl;
+
+}
+static void printAll(){
     
 }
 
