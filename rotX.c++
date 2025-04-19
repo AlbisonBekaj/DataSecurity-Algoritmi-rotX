@@ -15,55 +15,8 @@ class RotX{
                 data[i] = (data[i] + key) % 256;
                 text[i] = static_cast<char>(data[i]);
             }
-<<<<<<< HEAD
         delete[] data;
         }
-=======
-        for (int i = 0; i < text.length(); i++) {
-            data[i] = (data[i] + key) % 256;
-        }
-        for (int i = 0; i < text.length(); i++) {
-        text[i] = static_cast<char>(data[i]);
-    }
-    delete[] data;
-    }
-    static void print_bytes(string& data) {
-        int length = data.length();
-        for (int i = 0; i < length; i++) {
-            cout << static_cast<int>(data[i]) << " ";
-        }
-        cout << endl;
-    }
-    static void encryptAll(vector<string>& list, vector<int>& keys, int count) {
-    for (int i = 0; i < count; ++i) {
-        encrypt(list[i], keys[i]);  
-        std::cout << "Encrypted " << i + 1 << ": ";
-        print_bytes(list[i]);       
-    }
-
-    static void decrypt(string & text, int key) {
-        uint8_t* data = new uint8_t[text.length()];
-        for (int i = 0; i < text.length(); i++) {
-            data[i] = static_cast<uint8_t>(text[i]);
-        }
-        for (int i = 0; i < text.length(); i++) {
-            data[i] = (data[i] - key + 256) % 256;
-        }
-        for (int i = 0; i < text.length(); i++) {
-            text[i] = static_cast<char>(data[i]);
-        }
-        delete[] data;
-    }
-    
-    static void DecryptAll(vector<string>& list, vector<int>& keys, int count) {
-        for (int i = 0; i < count; ++i) {
-            Decrypt(list[i], keys[i]); 
-            std::cout << "Decrypted " << i + 1 << ": ";
-            print_bytes(list[i]);  
-        }
-    }
-}
->>>>>>> 473e8ac1282283fd56c39aff01200b721043d782
 
         static void print_bytes(string& data) {
             int length = data.length();
