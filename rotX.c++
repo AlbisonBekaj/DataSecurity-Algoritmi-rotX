@@ -38,7 +38,10 @@ static vector<uint8_t>generateKeys(size_t count){
     for(size_t i=0;i<count;i++){
         keys.push_back(generateKey());
     }
+    return keys;
+
 }
+
 };
 
 class Run{
