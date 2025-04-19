@@ -29,7 +29,10 @@ class RotX{
 
 };
 class Key{
-
+public:
+static uint8_t generateKey(){
+    return static_cast<uint8_t>(rand()%255+1);
+}
 };
 
 class Run{
