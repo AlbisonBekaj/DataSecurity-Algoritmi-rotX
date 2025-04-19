@@ -47,12 +47,13 @@ class RotX{
             }
             delete[] data;
         }
-        
+
         static void DecryptAll(vector<string>& list, vector<int>& keys, int count) {
             for (int i = 0; i < count; ++i) {
                 Decrypt(list[i], keys[i]); 
                 std::cout << "Decrypted " << i + 1 << ": ";
                 print_bytes(list[i]); 
+                std::cout << "Decrypted Text: " << list[i] << std::endl;
             }
         }
         static void bruteForce(string & text){
