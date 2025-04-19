@@ -37,18 +37,25 @@ class RotX{
 
     static void decrypt(string & text, int key) {
         uint8_t* data = new uint8_t[text.length()];
-        for (size_t i = 0; i < text.length(); i++) {
+        for (int i = 0; i < text.length(); i++) {
             data[i] = static_cast<uint8_t>(text[i]);
         }
-        for (size_t i = 0; i < text.length(); i++) {
+        for (int i = 0; i < text.length(); i++) {
             data[i] = (data[i] - key + 256) % 256;
         }
-        for (size_t i = 0; i < text.length(); i++) {
+        for (int i = 0; i < text.length(); i++) {
             text[i] = static_cast<char>(data[i]);
         }
         delete[] data;
     }
     
+    static void DecryptAll(vector<string>& list, vector<int>& keys, int count) {
+        for (int i = 0; i < count; ++i) {
+            Decrypt(list[i], keys[i]); 
+            std::cout << "Decrypted " << i + 1 << ": ";
+            print_bytes(list[i]);  
+        }
+    }
 }
 
 };
