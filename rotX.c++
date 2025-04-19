@@ -52,7 +52,13 @@ class RotX{
             }
         }
         static void bruteForce(string & text){
-
+            cout << "\n--- Brute Force Decryption ---\n";
+            for (int key = 1; key <= 255; ++key) {
+                string copy = text;
+                decrypt(copy, key);
+                cout << "Key " << key << " => " << copy << endl;
+            }
+            cout << "--------------------------------\n";
         }
 };
 class Key{
