@@ -41,6 +41,9 @@ static vector<uint8_t>generateKeys(size_t count){
     return keys;
 
 }
+static void print(const uint8_t*data, size_t length, const string& label="Data" ){
+    
+}
 
 };
 
