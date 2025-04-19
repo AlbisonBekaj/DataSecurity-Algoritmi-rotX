@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <cstring>
 #include <vector>
+#include <cstdlib>  
 
 using namespace std;
 class RotX{
@@ -63,6 +64,32 @@ static void printAll(uint8_t**dataList, const size_t* lengths, size_t count, con
 
 class Run{
     public:
+    void static run(){
+        system("cls");  
+        int mode;
+        while(true){
+        cout<<"\n----------------------------------------  PRESS  --------------------------------------------------\n";
+        cout<<"------------------ 1 encrypt/decrypt ---------------- 2 encrypt/decrypt multiple ------------------\n Mode ? : ";
+        cin>> mode;
+            if(mode==1){
+                Run::EnDnOne();
+            }
+            else if(mode==2){
+                Run::EnDnMultiple();
+            }
+            else{
+                system("cls");  
+                cout << "Invalid option. Please select a valid mode.\n";
+
+            }
+        }
+    }
+    void static EnDnOne(){
+
+    }
+    void static EnDnMultiple(){
+        
+    }
 
 
 };
@@ -70,7 +97,7 @@ class Run{
 int main(){
 
 
-
+Run::run();
 
     return 0;
 }
