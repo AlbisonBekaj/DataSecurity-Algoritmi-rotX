@@ -60,6 +60,13 @@ class RotX{
             }
             cout << "--------------------------------\n";
         }
+
+        static void bruteForceAll(vector<string>& list) {
+            for (int i = 0; i < list.size(); ++i) {
+                cout << "\nText #" << i + 1 << ":\n";
+                bruteForce(list[i]);
+            }
+        }
 };
 class Key{
 public:
