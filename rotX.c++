@@ -12,52 +12,53 @@ class RotX{
             uint8_t* data = new uint8_t[text.length()];
             for (int i = 0; i < text.length(); i++) {
                 data[i] = static_cast<uint8_t>(text[i]);
+                data[i] = (data[i] + key) % 256;
+                text[i] = static_cast<char>(data[i]);
             }
-        for (int i = 0; i < text.length(); i++) {
-            data[i] = (data[i] + key) % 256;
-        }
-        for (int i = 0; i < text.length(); i++) {
-        text[i] = static_cast<char>(data[i]);
-    }
-    delete[] data;
-    }
-    static void print_bytes(string& data) {
-        int length = data.length();
-        for (int i = 0; i < length; i++) {
-            cout << static_cast<int>(data[i]) << " ";
-        }
-        cout << endl;
-    }
-    static void encryptAll(vector<string>& list, vector<int>& keys, int count) {
-    for (int i = 0; i < count; ++i) {
-        encrypt(list[i], keys[i]);  
-        std::cout << "Encrypted " << i + 1 << ": ";
-        print_bytes(list[i]);       
-    }
-
-    static void decrypt(string & text, int key) {
-        uint8_t* data = new uint8_t[text.length()];
-        for (size_t i = 0; i < text.length(); i++) {
-            data[i] = static_cast<uint8_t>(text[i]);
-        }
-        for (size_t i = 0; i < text.length(); i++) {
-            data[i] = (data[i] - key) % 256;
-        }
-        for (size_t i = 0; i < text.length(); i++) {
-            text[i] = static_cast<char>(data[i]);
-        }
         delete[] data;
-    }
-    
-}
+        }
 
+        static void print_bytes(string& data) {
+            int length = data.length();
+            for (int i = 0; i < length; i++) {
+                cout << static_cast<int>(data[i]) << " ";
+            }
+            cout << endl;
+        }
+
+        static void encryptAll(vector<string>& list, vector<int>& keys) {
+            for (int i = 0; i < list.size(); ++i) {
+                encrypt(list[i], keys[i]);  
+                std::cout << "Encrypted " << i + 1 << ": ";
+                print_bytes(list[i]);       
+            }
+        }
+        static void decrypt(string & text, int key) {
+            uint8_t* data = new uint8_t[text.length()];
+            for (size_t i = 0; i < text.length(); i++) {
+                data[i] = static_cast<uint8_t>(text[i]);
+            }
+            for (size_t i = 0; i < text.length(); i++) {
+                data[i] = (data[i] - key) % 256;
+            }
+            for (size_t i = 0; i < text.length(); i++) {
+                text[i] = static_cast<char>(data[i]);
+            }
+            delete[] data;
+        }
+        static void decryptAll(vector<string>& list, vector<int>& keys){
+
+        }
+        static void bruteForce(string & text){
+
+        }
 };
 class Key{
 public:
-static uint8_t generateKey(){
+static uint8_t generateKey(){               // Beje     qe me kthy int  ( jo uint8_t )
     return static_cast<uint8_t>(rand()%255+1);
 }
-static vector<uint8_t>generateKeys(size_t count){
+static vector<uint8_t>generateKeys(size_t count){   // Beje      vector<int> generateKeys( int count )
     vector<uint8_t>keys;
     for(size_t i=0;i<count;i++){
         keys.push_back(generateKey());
@@ -65,7 +66,7 @@ static vector<uint8_t>generateKeys(size_t count){
     return keys;
 
 }
-static void print(const uint8_t*data, size_t length, const string& label="Data" ){
+static void print(const uint8_t*data, size_t length, const string& label="Data" ){ // FSHIJE KETE FUNKSION 
     cout<<label<<":";
     for( size_t i=0; i<length;++i){
         cout<<static_cast<char>(data[i])<<"  ";
@@ -74,7 +75,7 @@ static void print(const uint8_t*data, size_t length, const string& label="Data" 
     cout<<endl;
 
 }
-static void printAll(uint8_t**dataList, const size_t* lengths, size_t count, const string&label="Batch"){
+static void printAll(uint8_t**dataList, const size_t* lengths, size_t count, const string&label="Batch"){ // FSHIJE KETE FUNKSION
     for(size_t i=0; i<count;++i){
         cout<<label<<"  "<<i+1<<":";
         print(dataList[i], lengths[i]);
@@ -82,7 +83,7 @@ static void printAll(uint8_t**dataList, const size_t* lengths, size_t count, con
     }
 
 }
-static void printText(const uint8_t*data, size_t length, const string& label="Text" ){
+static void printText(const uint8_t*data, size_t length, const string& label="Text" ){ // Largo kete label edhe beje qe me pranu string ngjashem me encrypt
     cout<<label<<":";
     for( size_t i=0; i<length;++i){
         cout<<static_cast<int>(data[i])<<"  ";
@@ -90,7 +91,7 @@ static void printText(const uint8_t*data, size_t length, const string& label="Te
     }
     cout<<endl;
 }
-static void printTextAll(uint8_t**dataList, const size_t* lengths, size_t count, const string&label="Batch Text"){
+static void printTextAll(uint8_t**dataList, const size_t* lengths, size_t count, const string&label="Batch Text"){  // Largo kete label dhe beje qe me pranu argumente te ngjashme me encryptAll()
     for(size_t i=0; i<count;++i){
         cout<<label<<"  "<<i+1<<":";
         printText(dataList[i], lengths[i]);
@@ -145,29 +146,22 @@ class Run{
             RotX::encrypt(data,key);
             cout<<"\nKEY : "<<key<<endl;
             RotX::print_bytes(data);
-
         }
         void static decryptAction(){
-            string text;
+            string data;
             int key;
             cout<< "\nEnter TEXT to Decrypt :";
             cin.ignore(); 
-            getline(cin, text);
+            getline(cin, data);
             cout<< "\n(0 - BRUTE FORCE ) Enter KEY to Decrypt :";
             cin>>key;
-            uint8_t* data = new uint8_t[text.length()];
-            for (size_t i = 0; i < text.length(); i++) {
-                data[i] = static_cast<uint8_t>(text[i]);
-            }
             if(key==0){
-                
+                RotX::bruteForce(data);
             }
-            else{
-                key=static_cast<uint8_t>(key);
-            }
-           // RotX::encrypt(data,text.length(),key);
-           // RotX::print_bytes(data,text.length());
-
+            RotX::print_bytes(data);
+            RotX::decrypt(data,key);
+            cout<<"\nKEY : "<<key<<endl;
+            RotX::print_bytes(data);
         }
         void static EnDnOne(){
             int action;
@@ -262,10 +256,8 @@ class Run{
 };
 
 int main(){
-    srand(time(0));
 
-
-Run::run();
+    Run::run();
 
     return 0;
 }
