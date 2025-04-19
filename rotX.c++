@@ -34,15 +34,11 @@ class RotX{
             }
         }
 
-        static void decrypt(string & text, int key) {
+        static void Decrypt(string & text, int key) {
             uint8_t* data = new uint8_t[text.length()];
             for (int i = 0; i < text.length(); i++) {
                 data[i] = static_cast<uint8_t>(text[i]);
-            }
-            for (int i = 0; i < text.length(); i++) {
                 data[i] = (data[i] - key + 256) % 256;
-            }
-            for (int i = 0; i < text.length(); i++) {
                 text[i] = static_cast<char>(data[i]);
             }
             delete[] data;
@@ -51,9 +47,8 @@ class RotX{
         static void DecryptAll(vector<string>& list, vector<int>& keys, int count) {
             for (int i = 0; i < count; ++i) {
                 Decrypt(list[i], keys[i]); 
-                std::cout << "Decrypted " << i + 1 << ": ";
+                cout << "Decrypted " << i + 1 << ": ";
                 print_bytes(list[i]); 
-                std::cout << "Decrypted Text: " << list[i] << std::endl;
             }
         }
         static void bruteForce(string & text){
