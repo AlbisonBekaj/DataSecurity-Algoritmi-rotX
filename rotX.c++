@@ -28,6 +28,10 @@ class RotX{
 
 
 };
+class Key{
+
+};
+
 class Run{
     public:
 
