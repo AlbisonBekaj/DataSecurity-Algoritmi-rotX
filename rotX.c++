@@ -50,8 +50,13 @@ static void print(const uint8_t*data, size_t length, const string& label="Data" 
     cout<<endl;
 
 }
-static void printAll(){
-    
+static void printAll(uint8_t**dataList, const size_t* lengths, size_t count, const string&label="Batch"){
+    for(size_t i=0; i<count;++i){
+        cout<<label<<""<<i+1<<":";
+        print(dataList[i], lengths[i]);
+        
+    }
+
 }
 
 };
