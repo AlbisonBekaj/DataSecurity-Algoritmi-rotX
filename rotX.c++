@@ -6,6 +6,21 @@
 #include <string.h>
 
 using namespace std;
+class Key{
+    public:
+    static int generateKey(){    
+        srand(time(NULL));    
+        return rand()%255+1;
+    }
+    static void print_bytes(string& data) {
+        int length = data.length();
+        for (int i = 0; i < length; i++) {
+            cout << static_cast<int>(static_cast<unsigned char>(data[i])) << " ";
+        }
+        cout << endl;
+    }
+};
+    
 class RotX{
     public:
     static void encrypt(std::string& text, int key) {
@@ -16,19 +31,12 @@ class RotX{
         }
     }
 
-        static void print_bytes(string& data) {
-            int length = data.length();
-            for (int i = 0; i < length; i++) {
-                cout << static_cast<int>(static_cast<unsigned char>(data[i])) << " ";
-            }
-            cout << endl;
-        }
 
         static void encryptAll(vector<string>& list, vector<int>& keys) {
             for (int i = 0; i < list.size(); ++i) {
                 encrypt(list[i], keys[i]);  
                 cout << "KEY : "<<keys[i]<<" ->Encrypted Text : " << list[i] << std::endl;  
-                print_bytes(list[i]);
+               Key:: print_bytes(list[i]);
             }
         }
 
@@ -44,7 +52,7 @@ class RotX{
             for (int i = 0; i < list.size(); ++i) {
                 decrypt(list[i], keys[i]); 
                 cout << "KEY : "<<keys[i]<<" ->Decrypted Text : " << list[i] << std::endl;
-                print_bytes(list[i]); 
+                Key::print_bytes(list[i]); 
             }
         }
         static void bruteForce(string & text){
@@ -53,7 +61,7 @@ class RotX{
                 string copy = text;
                 decrypt(copy, key);
                 cout << "Key " << key << " => " << copy <<"      ";
-                print_bytes(copy);
+                Key::print_bytes(copy);
             }
             cout << "--------------------------------\n";
         }
@@ -65,16 +73,10 @@ class RotX{
             }
         }
 };
-class Key{
-public:
-static int generateKey(){    
-    srand(time(NULL));    
-    return rand()%255+1;
-}
 
 
 
-};
+
 
 class Run{
     public:
@@ -116,10 +118,10 @@ class Run{
             else{
                 key=static_cast<uint8_t>(key);
             }
-            RotX::print_bytes(data);
+            Key::print_bytes(data);
             RotX::encrypt(data,key);
             cout << "KEY : "<<key<<" ->Encrypted Text :  " << data << std::endl; 
-            RotX::print_bytes(data);
+            Key::print_bytes(data);
         }
         void static decryptAction(){
             string data;
@@ -130,13 +132,13 @@ class Run{
             cin.ignore(); 
             getline(cin, data);
             
-            RotX::print_bytes(data);
+            Key::print_bytes(data);
             if(key==0){
                 RotX::bruteForce(data);
             }else{
                 RotX::decrypt(data,key);
                 cout << "KEY : "<<key<<" ->Decrypted Text :  " << data << std::endl;  
-                RotX::print_bytes(data);
+                Key::print_bytes(data);
             }
             
         }
