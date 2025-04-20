@@ -44,7 +44,7 @@ static vector<uint8_t>generateKeys(size_t count){
 static void print(const uint8_t*data, size_t length, const string& label="Data" ){
     cout<<label<<":";
     for( size_t i=0; i<length;++i){
-        cout<<static_cast<int>(data[i])<<"  ";
+        cout<<static_cast<char>(data[i])<<"  ";
 
     }
     cout<<endl;
@@ -67,7 +67,11 @@ static void printText(const uint8_t*data, size_t length, const string& label="Te
     cout<<endl;
 }
 static void printTextAll(uint8_t**dataList, const size_t* lengths, size_t count, const string&label="Batch Text"){
-    
+    for(size_t i=0; i<count;++i){
+        cout<<label<<"  "<<i+1<<":";
+        printText(dataList[i], lengths[i]);
+
+    }
 }
 
 
