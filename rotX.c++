@@ -226,6 +226,7 @@ class Run{
 };
 
 int main(){
+    srand(time(0));
 
 
 Run::run();
