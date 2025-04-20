@@ -27,7 +27,7 @@ class RotX{
         static void encryptAll(vector<string>& list, vector<int>& keys) {
             for (int i = 0; i < list.size(); ++i) {
                 encrypt(list[i], keys[i]);  
-                std::cout << "KEY : "<<keys[i]<<" ->Encrypted Text : " << list[i] << std::endl;  
+                cout << "KEY : "<<keys[i]<<" ->Encrypted Text : " << list[i] << std::endl;  
                 print_bytes(list[i]);
             }
         }
@@ -43,7 +43,7 @@ class RotX{
         static void decryptAll(vector<string>& list, vector<int>& keys) {
             for (int i = 0; i < list.size(); ++i) {
                 decrypt(list[i], keys[i]); 
-                std::cout << "KEY : "<<keys[i]<<" ->Decrypted Text : " << list[i] << std::endl;
+                cout << "KEY : "<<keys[i]<<" ->Decrypted Text : " << list[i] << std::endl;
                 print_bytes(list[i]); 
             }
         }
@@ -71,30 +71,7 @@ static int generateKey(){
     srand(time(NULL));    
     return rand()%255+1;
 }
-static vector<int>generateKeys(int count){   // NUK ESHTE PERDOR KY FUNKSION
-    vector<int>keys;
-    for(int i=0;i<count;i++){
-        keys.push_back(generateKey());
-    }
-    return keys;
 
-}
-
-static void printText(const uint8_t*data, size_t length, const string& label="Text" ){ // NUK ESHTE PERDOR KY FUNKSION
-    cout<<label<<":";                                                                   
-    for( size_t i=0; i<length;++i){
-        cout<<static_cast<int>(data[i])<<"  ";
-
-    }
-    cout<<endl;
-}
-static void printTextAll(uint8_t**dataList, const size_t* lengths, size_t count, const string&label="Batch Text"){  // NUK ESHTE PERDOR KY FUNKSION
-    for(size_t i=0; i<count;++i){
-        cout<<label<<"  "<<i+1<<":";
-        printText(dataList[i], lengths[i]);
-
-    }
-}
 
 
 };
