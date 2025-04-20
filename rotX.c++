@@ -58,6 +58,8 @@ static void printAll(uint8_t**dataList, const size_t* lengths, size_t count, con
     }
 
 }
+static void printText(const uint8_t*data, size_t length, const string& label="Data" );
+
 
 };
 
